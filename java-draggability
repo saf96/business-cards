@@ -1,0 +1,14 @@
+// script.js
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text', e.target.id); // this line is not strictly necessary for this functionality
+        e.target.classList.add('dragging');
+    });
+
+    card.addEventListener('dragend', (e) => {
+        e.target.classList.remove('dragging');
+        e.target.style.position = 'absolute';
+        e.target.style.top = `${e.clientY - 100}px`; // Center the card vertically around cursor
+        e.target.style.left = `${e.clientX - 150}px`; // Center the card horizontally around cursor
+    });
+});
